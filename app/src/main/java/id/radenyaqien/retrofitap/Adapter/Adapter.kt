@@ -1,5 +1,6 @@
 package id.radenyaqien.retrofitap.Adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import id.radenyaqien.retrofitap.Model.latest.EBOOKAPP
-import id.radenyaqien.retrofitap.Model.latest.Ebook
+import id.radenyaqien.retrofitap.Model.latest.EbookLatest
 import id.radenyaqien.retrofitap.R
 import id.radenyaqien.retrofitap.detailActivity
+import kotlinx.android.synthetic.main.list_item.view.*
+import kotlin.math.log
 
-class Adapter(private val ebookList: Ebook) : RecyclerView.Adapter<Adapter.Viewholder>() {
+class Adapter(private val ebookList: EbookLatest) : RecyclerView.Adapter<Adapter.Viewholder>() {
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tv: TextView = itemView.findViewById(R.id.tv_list_name)
         var ebook: EBOOKAPP? = null
@@ -45,7 +48,6 @@ class Adapter(private val ebookList: Ebook) : RecyclerView.Adapter<Adapter.Viewh
             val context = view.context
             val intent = Intent(context, detailActivity::class.java)
             intent.putExtra(detailActivity.ARG_ITEM_ID, holder.ebook!!.id)
-
             context.startActivity(intent)
 
         }
