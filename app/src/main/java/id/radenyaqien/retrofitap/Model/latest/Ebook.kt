@@ -1,5 +1,7 @@
 package id.radenyaqien.retrofitap.Model.latest
 
-data class EbookLatest(
+data class Ebook(
     var EBOOK_APP: List<EBOOKAPP>
+
+
 )
