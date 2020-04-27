@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit
 object Services {
 
     private const val URL = "http://app.xmgi.net/"
+    const val URLIMAGE = "http://app.xmgi.net/images/thumbs/"
 
     // Create Logger
     private val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)

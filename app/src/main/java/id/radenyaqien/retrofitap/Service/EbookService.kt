@@ -1,15 +1,14 @@
 package id.radenyaqien.retrofitap.Service
 
-import id.radenyaqien.retrofitap.Model.latest.EbookLatest
-import okhttp3.ResponseBody
+import id.radenyaqien.retrofitap.Model.latest.Ebook
 import retrofit2.Call
 import retrofit2.http.*
 
 interface EbookService {
 
     @GET("api.php?latest")
-    fun GetEbooklist(): Call<EbookLatest>
+    fun GetEbooklist(): Call<Ebook>
 
-    @GET("http://app.xmgi.net//api.php?book_id={id}")
-    fun getEbookDetail(@Path("id") id: Int): Call<ResponseBody>
+    @GET("http://app.xmgi.net//api.php")
+    fun getEbookDetail(@QueryMap filter: HashMap<String, Int>): Call<Ebook>
 }

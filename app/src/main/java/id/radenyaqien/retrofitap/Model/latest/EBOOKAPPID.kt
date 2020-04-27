@@ -15,7 +15,7 @@ data class EBOOKAPPID(
     var category_name: String,
     var cid: String,
     var featured: String,
-    var id: String,
+    var id: Int,
     var rate_avg: String,
     var related_books: List<RelatedBook>,
     var total_rate: String,
