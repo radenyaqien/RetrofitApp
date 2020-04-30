@@ -1,6 +1,6 @@
 package id.radenyaqien.retrofitap.Service
 
-import id.radenyaqien.retrofitap.Model.latest.Ebook
+import id.radenyaqien.retrofitap.Model.Ebook
 import retrofit2.Call
 import retrofit2.http.*
 

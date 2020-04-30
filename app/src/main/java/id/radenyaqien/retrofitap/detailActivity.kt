@@ -1,12 +1,10 @@
 package id.radenyaqien.retrofitap
 
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import id.radenyaqien.retrofitap.Model.latest.Ebook
+import id.radenyaqien.retrofitap.Model.Ebook
 import id.radenyaqien.retrofitap.Service.EbookService
 import id.radenyaqien.retrofitap.Service.Services
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -46,16 +44,13 @@ class detailActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Ebook>, response: Response<Ebook>) {
                 if (response.isSuccessful) {
-                    val ebooklist = response.body()!!
-                        .EBOOK_APP
-
-                    ebooklist.let {
-                        tv_bookname.text = ebooklist.get(0).book_title
-                        bookAuthor.text = ebooklist.get(0).author_name
-                        tvCategory.text = ebooklist[0].category_name
-                        tvDescription.text = ebooklist[0].book_description
+                    response.body()!!.EBOOK_APP.let {
+                        tv_bookname.text = it[0].book_title
+                        bookAuthor.text = it[0].author_name
+                        tvCategory.text = it[0].category_name
+                        tvDescription.text = it[0].book_description
                         Glide.with(this@detailActivity)
-                            .load(Services.URLIMAGE + ebooklist[0].book_cover_img)
+                            .load(Services.URLIMAGE + it[0].book_cover_img)
                             .into(imgbook)
 //                    val uri = it[0].book_file_url
 //                    button.setOnClickListener {

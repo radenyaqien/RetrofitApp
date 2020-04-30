@@ -6,15 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import id.radenyaqien.retrofitap.Model.latest.EBOOKAPP
-import id.radenyaqien.retrofitap.Model.latest.Ebook
+import id.radenyaqien.retrofitap.Model.EBOOKAPP
 import id.radenyaqien.retrofitap.R
 import id.radenyaqien.retrofitap.detailActivity
 
-class Adapter(private val ebookList: Ebook) : RecyclerView.Adapter<Adapter.Viewholder>() {
+class Adapter(private val ebookList: List<EBOOKAPP>) : RecyclerView.Adapter<Adapter.Viewholder>() {
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tv: TextView = itemView.findViewById(R.id.tv_list_name)
-        var ebook: EBOOKAPP? = null
+        lateinit var ebook: EBOOKAPP
 
         override fun toString(): String {
             //return super.toString()
@@ -33,18 +32,19 @@ class Adapter(private val ebookList: Ebook) : RecyclerView.Adapter<Adapter.Viewh
 
     override fun getItemCount(): Int {
 
-        return ebookList.EBOOK_APP.count()
+        return ebookList.size
 
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
-        holder.ebook = ebookList.EBOOK_APP[position]
-        holder.tv.text = holder.ebook!!.book_title
+        holder.ebook = ebookList[position]
+            //ebookList.[position]
+        holder.tv.text = holder.ebook.book_title
 
         holder.itemView.setOnClickListener { view ->
             val context = view.context
             val intent = Intent(context, detailActivity::class.java)
-            intent.putExtra(detailActivity.ARG_ITEM_ID, holder.ebook!!.id)
+            intent.putExtra(detailActivity.ARG_ITEM_ID, holder.ebook.id)
 
             context.startActivity(intent)
 

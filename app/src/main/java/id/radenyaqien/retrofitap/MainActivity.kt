@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.JsonElement
 import id.radenyaqien.retrofitap.Adapter.Adapter
-import id.radenyaqien.retrofitap.Model.latest.Ebook
+import id.radenyaqien.retrofitap.Model.Ebook
 import id.radenyaqien.retrofitap.Service.EbookService
 import id.radenyaqien.retrofitap.Service.Services
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        ebookview.layoutManager = LinearLayoutManager(this@MainActivity)
         loadInit()
 
     }
@@ -27,11 +26,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadInit() {
 
-        val EbookServ = Services.buildService(EbookService::class.java)
+        val bookServ = Services.buildService(EbookService::class.java)
 
 
 
-        val request = EbookServ.GetEbooklist()
+        val request = bookServ.GetEbooklist()
 
         request.enqueue(object : Callback<Ebook> {
             override fun onFailure(call: Call<Ebook>, t: Throwable) {
@@ -44,8 +43,8 @@ class MainActivity : AppCompatActivity() {
 //                    try {
                     response.body()!!.EBOOK_APP.let {
 
-                        ebookview.layoutManager = LinearLayoutManager(this@MainActivity)
-                        ebookview.adapter = Adapter(Ebook(it))
+
+                        ebookview.adapter = Adapter(it)
                     }
 
 
